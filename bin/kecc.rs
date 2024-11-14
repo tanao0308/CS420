@@ -91,9 +91,11 @@ fn main() {
 
     let ext = input.extension();
     if ext == Some(OsStr::new("c")) {
+        // 将 input.c 文件的字符串解析为 c 语言的 ast
         let input = ok_or_exit!(Parse::default().translate(&input), 1);
         compile_c(&input, &mut output, &matches);
     } else if ext == Some(OsStr::new("ir")) {
+        // 将 input.ir 文件的字符串进行解析
         let mut input = ok_or_exit!(IrParse::default().translate(&input), 1);
         compile_ir(&mut input, &mut output, &matches);
     } else {
@@ -101,6 +103,8 @@ fn main() {
     }
 }
 
+// 将 input 文件里的 c 代码进行编译并输出到 output 文件
+// match 是命令行参数的结构体
 fn compile_c(input: &TranslationUnit, output: &mut dyn ::std::io::Write, matches: &KeccCli) {
     if matches.parse {
         return;
@@ -111,6 +115,7 @@ fn compile_c(input: &TranslationUnit, output: &mut dyn ::std::io::Write, matches
         return;
     }
 
+    // 将 c 转换为 ir 的步骤
     let mut ir = match Irgen::default().translate(input) {
         Ok(ir) => ir,
         Err(irgen_error) => {
