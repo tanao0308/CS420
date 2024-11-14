@@ -110,6 +110,7 @@ fn compile_c(input: &TranslationUnit, output: &mut dyn ::std::io::Write, matches
         return;
     }
 
+    // 输出源代码转化为 ast 后再转化为 c 语言时的代码
     if matches.print {
         write(input, output).unwrap();
         return;

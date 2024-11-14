@@ -42,7 +42,12 @@ impl<T: WriteString> WriteString for Option<T> {
 
 impl WriteLine for TranslationUnit {
     fn write_line(&self, _indent: usize, _write: &mut dyn Write) -> Result<()> {
-        todo!("homework 1")
+        // todo!("homework 1")
+        for ex_decl in &self.0 {
+            ex_decl.write_line(_indent, _write)?;
+            writeln!(_write)?;
+        }
+        Ok(())
     }
 }
 

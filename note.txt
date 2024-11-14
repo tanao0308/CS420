@@ -1,0 +1,8 @@
+>>> write!(_write, "{}", "hello there".repeat(1))?
+    在 Rust 中，? 操作符用于简化错误处理，它会在表达式返回 Result 或 Option 时
+        如果是 Ok，则解包并返回其中的值。
+        如果是 Err，则立即返回错误，退出当前函数。
+
+>>> TranslationUnit
+    在编译器中，TranslationUnit 通常代表一个源文件的“翻译单元”。在 C 或 C++ 语言中，一个源文件就是一个翻译单元，包含了从文件头到文件尾的所有代码。
+
